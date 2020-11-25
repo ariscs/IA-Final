@@ -1,5 +1,6 @@
 import React, {
-  useState
+  useState,
+  useEffect
 } from "react";
 import Slider from 'react-input-slider';
 
@@ -9,22 +10,48 @@ import Plus from '../images/plus.png';
 import Minus from '../images/minus.png';
 
 const DGeneralPage = () => {
-  const [sin1, setSin1] = useState({ x: 0 });
-  const [sin2, setSin2] = useState({ x: 0 });
-  const [sin3, setSin3] = useState({ x: 0 });
+  const [sin1, setSin1] = useState({ x: 0.00 });
+  const [sin2, setSin2] = useState({ x: 0.00 });
+  const [sin3, setSin3] = useState({ x: 0.00 });
   const [temp, setTemp] = useState({ x: 35 });
-  const [sin4, setSin4] = useState({ x: 0 });
-  const [sin5, setSin5] = useState({ x: 0 });
-  const [sin6, setSin6] = useState({ x: 0 });
-  const [sin7, setSin7] = useState({ x: 0 });
-  const [sin8, setSin8] = useState({ x: 0 });
-  const [sin9, setSin9] = useState({ x: 0 });
-  const [sin10, setSin10] = useState({ x: 0 });
-  const [sin11, setSin11] = useState({ x: 0 });
-  const [sin12, setSin12] = useState({ x: 0 });
-  const [sin13, setSin13] = useState({ x: 0 });
-  const [sin14, setSin14] = useState({ x: 0 });
-  const [sin15, setSin15] = useState({ x: 0 });
+  const [sin4, setSin4] = useState({ x: 0.00 });
+  const [sin5, setSin5] = useState({ x: 0.00 });
+  const [sin6, setSin6] = useState({ x: 0.00 });
+  const [sin7, setSin7] = useState({ x: 0.00 });
+  const [sin8, setSin8] = useState({ x: 0.00 });
+  const [sin9, setSin9] = useState({ x: 0.00 });
+  const [sin10, setSin10] = useState({ x: 0.00 });
+  const [sin11, setSin11] = useState({ x: 0.00 });
+  const [sin12, setSin12] = useState({ x: 0.00 });
+  const [sin13, setSin13] = useState({ x: 0.00 });
+  const [sin14, setSin14] = useState({ x: 0.00 });
+  const [sin15, setSin15] = useState({ x: 0.00 });
+
+  const [datos, setDatos] = useState([]);
+
+  const handleButton = () => {
+    setDatos([
+      sin1.x,
+      sin2.x,
+      sin3.x,
+      sin4.x,
+      sin5.x,
+      sin6.x,
+      sin7.x,
+      sin8.x,
+      sin9.x,
+      sin10.x,
+      sin11.x,
+      sin12.x,
+      sin13.x,
+      sin14.x,
+      sin15.x
+    ]);
+  };
+
+  useEffect(() => {
+    console.log(datos);
+  }, [datos]);
 
   return (
     <>
@@ -392,7 +419,7 @@ const DGeneralPage = () => {
             </div>
 
             <div className="field mt-5">
-              <button class="button is-large is-primary">Continuar</button>
+              <button class="button is-large is-primary" onClick={handleButton}>Continuar</button>
             </div>
           </div>{/*Column*/}
         </div>{/*Columns*/}
