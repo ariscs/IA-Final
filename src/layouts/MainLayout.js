@@ -8,9 +8,7 @@ const MainLayout = ({ children }) => {
   return (
     <>
       <NavBar/>
-      <section className="section">
-        <main className="container">{children}</main>  
-      </section>
+      {children}
       <Footer/>
     </>
   )

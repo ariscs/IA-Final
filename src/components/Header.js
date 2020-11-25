@@ -10,7 +10,7 @@ const Header = (props) => (
             <h1 className="title is-1">Diagnosticapp</h1>
           </div>
           <div className="column is-three-fifths">
-            <div className="content">
+            <div className="content is-medium">
               <p>{props.message}</p>
             </div>
           </div>

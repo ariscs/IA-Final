@@ -24,15 +24,27 @@ const App = () => {
         <Switch>
           <Route path="/dGeneral">
             <Header message={m2}></Header>
-            <DGeneralPage/>
+            <section className="section">
+              <main className="container">
+                <DGeneralPage/>
+              </main>  
+            </section>
           </Route>
           <Route path="/dEspecifico">
             <Header message={m3}></Header>
-            <DEspecificoPage/>
+            <section className="section">
+              <main className="container">
+                <DEspecificoPage/>
+              </main>  
+            </section>
           </Route>
           <Route path="/">
             <Header message={m1}></Header>
-            <HomePage/>
+            <section className="section">
+              <main className="container">
+                <HomePage/>
+              </main>  
+            </section>
           </Route>
         </Switch>
       </MainLayout>
