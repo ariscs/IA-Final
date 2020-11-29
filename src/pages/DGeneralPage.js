@@ -4,6 +4,8 @@ import React, {
 } from "react";
 import Slider from 'react-input-slider';
 
+import data from '../data/index';
+
 import Hot from '../images/hot.png';
 import Cold from '../images/cold.png';
 import Plus from '../images/plus.png';
@@ -34,7 +36,7 @@ const DGeneralPage = () => {
       sin1.x,
       sin2.x,
       sin3.x,
-      sin4.x,
+      Number(sin4.x),
       sin5.x,
       sin6.x,
       sin7.x,
@@ -51,6 +53,24 @@ const DGeneralPage = () => {
 
   useEffect(() => {
     console.log(datos);
+    let totalesE = []; //suma de los valores de cada enfermedad, el arreglo debe tener maximo 12 elementos.
+    let totalesM = []; //suma de los minimos de cada enfermedad comparada con los datos del usuario, el arreglo debe tener maximo 12 elementos.
+    data.enfermedades.forEach((e, i) => {
+      let total = 0;
+      let sumaMinimos = 0;
+      e.val.forEach((valor, ind) => {
+        total += valor;
+        if(valor>datos[ind]){
+          sumaMinimos+=datos[ind];
+        }else{
+          sumaMinimos+=valor;
+        }
+      });
+      totalesM.push(sumaMinimos);
+      totalesE.push(total);
+    });
+    console.log(totalesM);
+    console.log(totalesE);
   }, [datos]);
 
   return (
@@ -423,7 +443,7 @@ const DGeneralPage = () => {
             </div>
           </div>{/*Column*/}
         </div>{/*Columns*/}
-      </div>
+      </div>{/*Container*/}
     </>
   );
 }

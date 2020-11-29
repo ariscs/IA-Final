@@ -1,4 +1,5 @@
 import React, {
+  useEffect,
     useState
   } from "react";
   import Slider from 'react-input-slider';
@@ -11,7 +12,7 @@ import React, {
   import data from '../data/index';
   
   const DEspecificoPage = () => {
-    const [enf, setEnf] = useState([]);
+    const [enf, setEnf] = useState([]); //Se guarda su posicion en el arreglo original en data.enfermedades.
     const [sin1, setSin1] = useState({ x: 0 });
     const [sin2, setSin2] = useState({ x: 0 });
     const [sin3, setSin3] = useState({ x: 0 });
@@ -28,6 +29,8 @@ import React, {
     const [sin13, setSin13] = useState({ x: 0 });
     const [sin14, setSin14] = useState({ x: 0 });
     const [sin15, setSin15] = useState({ x: 0 });
+
+    const [datos, setDatos] = useState([]);
 
     const CheckboxHandle = (event) => {
       if (event.target.checked === true) {
@@ -48,6 +51,52 @@ import React, {
         }
       }
     };
+
+    const handleButton = () => {
+      setDatos([
+        sin1.x,
+        sin2.x,
+        sin3.x,
+        Number(sin4.x),
+        sin5.x,
+        sin6.x,
+        sin7.x,
+        sin8.x,
+        sin9.x,
+        sin10.x,
+        sin11.x,
+        sin12.x,
+        sin13.x,
+        sin14.x,
+        sin15.x
+      ]);
+    };
+
+    useEffect(() => {
+      console.log(enf);
+      let totalesE = []; //suma de los valores de cada enfermedad, el arreglo debe tener maximo 12 elementos.
+      let totalesM = []; //suma de los minimos de cada enfermedad comparada con los datos del usuario, el arreglo debe tener maximo 12 elementos.
+      if(enf.length > 0) {
+        enf.forEach((element) => {
+          let total = 0;
+          let sumaMinimos = 0;
+          data.enfermedades[Number(element)].val.forEach((valor, ind) => {
+            total += valor;
+            if(valor>datos[ind]){
+              sumaMinimos+=datos[ind];
+            }else{
+              sumaMinimos+=valor;
+            }
+          });
+          totalesM.push(sumaMinimos);
+          totalesE.push(total);
+        });
+        console.log(totalesM);
+        console.log(totalesE);
+      }else{
+        console.log("Es necesario seleccionar endermedades para comparar.");
+      }
+    },[datos]);
 
     const enfMap = data.enfermedades.map((item) => {
       return(
@@ -435,7 +484,7 @@ import React, {
               </div>
 
               <div className="field mt-5">
-                <button class="button is-large is-primary">Continuar</button>
+                <button class="button is-large is-primary" onClick={handleButton}>Continuar</button>
               </div>
             </div>{/*Column*/}
           </div>{/*Columns*/}
