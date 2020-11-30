@@ -1,8 +1,10 @@
 import React, {
-  useEffect,
-    useState
+    useEffect,
+    useState,
+    useRef
   } from "react";
   import Slider from 'react-input-slider';
+  import Modal2 from '../components/Modal2';
   
   import Hot from '../images/hot.png';
   import Cold from '../images/cold.png';
@@ -32,6 +34,12 @@ import React, {
 
     const [datos, setDatos] = useState([]);
 
+    const [openModal, setOpenModal] = useState(false);
+    const [indexMax, setIndexMax] = useState(-1);
+    const [porMax, setPorMax] = useState(0);
+    const [por, setPor] = useState([]);
+
+
     const CheckboxHandle = (event) => {
       if (event.target.checked === true) {
         if(enf.length <= 4) {
@@ -54,9 +62,9 @@ import React, {
 
     const handleButton = () => {
       setDatos([
-        sin1.x,
-        sin2.x,
-        sin3.x,
+        Number(sin1.x),
+        Number(sin2.x),
+        Number(sin3.x),
         Number(sin4.x),
         sin5.x,
         sin6.x,
@@ -72,31 +80,49 @@ import React, {
       ]);
     };
 
+    const isInitialMount = useRef(true);
+
     useEffect(() => {
-      console.log(enf);
-      let totalesE = []; //suma de los valores de cada enfermedad, el arreglo debe tener maximo 12 elementos.
-      let totalesM = []; //suma de los minimos de cada enfermedad comparada con los datos del usuario, el arreglo debe tener maximo 12 elementos.
-      if(enf.length > 0) {
-        enf.forEach((element) => {
-          let total = 0;
-          let sumaMinimos = 0;
-          data.enfermedades[Number(element)].val.forEach((valor, ind) => {
-            total += valor;
-            if(valor>datos[ind]){
-              sumaMinimos+=datos[ind];
-            }else{
-              sumaMinimos+=valor;
-            }
+      if(isInitialMount.current){
+        isInitialMount.current = false;
+      } else {
+        console.log(enf);
+        let totalesE = []; //suma de los valores de cada enfermedad, el arreglo debe tener maximo 12 elementos.
+        let totalesM = []; //suma de los minimos de cada enfermedad comparada con los datos del usuario, el arreglo debe tener maximo 12 elementos.
+        if(enf.length > 0) {
+          enf.forEach((element) => {
+            let total = 0;
+            let sumaMinimos = 0;
+            data.enfermedades[Number(element)].val.forEach((valor, ind) => {
+              total += valor;
+              if(valor>datos[ind]){
+                sumaMinimos+=datos[ind];
+              }else{
+                sumaMinimos+=valor;
+              }
+            });
+            totalesM.push(sumaMinimos);
+            totalesE.push(total);
           });
-          totalesM.push(sumaMinimos);
-          totalesE.push(total);
-        });
-        console.log(totalesM);
-        console.log(totalesE);
-      }else{
-        console.log("Es necesario seleccionar endermedades para comparar.");
+          //Modal
+          let p = [];
+          for(let i = 0; i < totalesM.length; i++){
+            p.push(Number(((totalesM[i]*100)/totalesE[i]).toFixed(2)));
+          }
+          console.log(p);
+          console.log(p.indexOf(Math.max(...p)));
+          setPor(p);
+          setPorMax(Math.max(...p));
+          setIndexMax(p.indexOf(Math.max(...p)));
+        }else{
+          console.log("Es necesario seleccionar endermedades para comparar.");
+        }
       }
     },[datos]);
+
+    const toogleModal = () => {
+      setOpenModal(!openModal);
+    };
 
     const enfMap = data.enfermedades.map((item) => {
       return(
@@ -114,7 +140,7 @@ import React, {
           <h1 className="title">Cuestionario - Diagnóstico general</h1>
         </div>
         <div className="container mt-5">
-          <h2 className="title is-5">Selecciona las enfermedades que quieres comparar</h2>
+          <h2 className="title is-5">Selecciona las enfermedades que quieres comparar (puedes seleccionar un máximo de 5 enfermedades):</h2>
         </div>
         <div className="container mt-5">
           <div className="columns">
@@ -484,11 +510,16 @@ import React, {
               </div>
 
               <div className="field mt-5">
-                <button className="button is-large is-primary" onClick={handleButton}>Continuar</button>
+                <button className="button is-large is-info" onClick={handleButton}>Guardar Información</button>
+              </div>
+              <div className="field mt-5">
+                <button className="button is-large is-primary"onClick={toogleModal}>Diagnóstico</button>
               </div>
             </div>{/*Column*/}
           </div>{/*Columns*/}
-        </div>
+        </div>{/*Container*/}
+
+        <Modal2 open={openModal} ind={Number(enf[indexMax])} close={toogleModal} por={porMax} lista={enf} listaPor={por}/>
       </>
     );
   }

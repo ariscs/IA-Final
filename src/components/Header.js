@@ -7,7 +7,7 @@ const Header = (props) => (
       <div className="container">
         <div className="columns">
           <div className="column">
-            <h1 className="title is-1">Diagnosticapp</h1>
+            <h1 className="title is-1">DiagnosticApp</h1>
           </div>
           <div className="column is-three-fifths">
             <div className="content is-medium">

@@ -80,9 +80,7 @@ const DGeneralPage = () => {
         totalesM.push(sumaMinimos);
         totalesE.push(total);
       });
-      // setTotalesM(totalesM);
-      // setTotalesE(totalesE);
-      // showResults();
+      //Modal
       let p = [];
       for(let i = 0; i < totalesM.length; i++){
         p.push(Number(((totalesM[i]*100)/totalesE[i]).toFixed(2)));

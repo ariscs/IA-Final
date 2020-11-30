@@ -3,62 +3,74 @@ const data = {
     {
       id: 1,
       name: "Artritis reumatoide",
-      val: [0, 0.9, 0.6, 0.84, 0, 0.82, 0.92, 0.89, 0.95, 0.3, 0.3, 0, 0, 0.01, 0]
+      val: [0, 0.9, 0.6, 0.84, 0, 0.82, 0.92, 0.89, 0.95, 0.3, 0.3, 0, 0, 0.01, 0],
+      tratamiento: "Los estudios clínicos indican que la remisión de los síntomas es más probable cuando el tratamiento comienza temprano con medicamentos conocidos como medicamentos antirreumáticos modificadores de la enfermedad (DMARD). El tipo de medicamento que te recomiende el médico dependerá de la gravedad de los síntomas y del tiempo que hayas tenido artritis reumatoide."
     },
     {
       id: 2,
       name: "Osteoporosis",
-      val: [0.5, 0.92, 0, 0.3, 0.8, 0.89, 0.9, 0.4, 0.96, 0.6, 0, 0, 0.01, 0.4, 0]
+      val: [0.5, 0.92, 0, 0.3, 0.8, 0.89, 0.9, 0.4, 0.96, 0.6, 0, 0, 0.01, 0.4, 0],
+      tratamiento: ""
     },
     {
       id: 3,
       name: "Parálisis supranuclear progresiva",
-      val: [0, 0.98, 0, 0, 0.98, 0.8, 0.5, 0.68, 0.1, 0.96, 0.98, 0.99, 0.8, 0.95, 0.1]
+      val: [0, 0.98, 0, 0, 0.98, 0.8, 0.5, 0.68, 0.1, 0.96, 0.98, 0.99, 0.8, 0.95, 0.1],
+      tratamiento: ""
     },
     {
       id: 4,
       name: "Parkinson",
-      val: [0, 0.99, 0, 0, 0, 0.79, 0.6, 0.39, 0.3, 0.99, 0.49, 0.75, 0.7, 0.87, 0]
+      val: [0, 0.99, 0, 0, 0, 0.79, 0.6, 0.39, 0.3, 0.99, 0.49, 0.75, 0.7, 0.87, 0],
+      tratamiento: ""
     },
     {
       id: 5,
       name: "Tay-Sachs",
-      val: [0, 0, 0.7, 0.1, 0, 0.96, 0.59, 0.3, 0.42, 0.95, 0.89, 0.92, 0.91, 0.93, 0]
+      val: [0, 0, 0.7, 0.1, 0, 0.96, 0.59, 0.3, 0.42, 0.95, 0.89, 0.92, 0.91, 0.93, 0],
+      tratamiento: ""
     },
     {
       id: 6,
       name: "Esclerosis lateral amiotrófica",
-      val: [0, 0, 0, 0.5, 0.98, 0.91, 0.7, 0.1, 0.98, 0.9, 0.5, 0.99, 0.5, 0.2, 0]
+      val: [0, 0, 0, 0.5, 0.98, 0.91, 0.7, 0.1, 0.98, 0.9, 0.5, 0.99, 0.5, 0.2, 0],
+      tratamiento: ""
     },
     {
       id: 7,
       name: "Esclerosis múltiple",
-      val: [0.5, 0.5, 0, 0.01, 0, 0.7, 0.8, 0.5, 0.01, 0.92, 0.9, 0.1, 0.85, 0.93, 0]
+      val: [0.5, 0.5, 0, 0.01, 0, 0.7, 0.8, 0.5, 0.01, 0.92, 0.9, 0.1, 0.85, 0.93, 0],
+      tratamiento: ""
     },
     {
       id: 8,
       name: "Alzheimer",
-      val: [0, 0.97, 0, 0.1, 0, 0.98, 0.6, 0.2, 0, 0.2, 0.1, 0.9, 0.99, 0.98, 0.99]
+      val: [0, 0.97, 0, 0.1, 0, 0.98, 0.6, 0.2, 0, 0.2, 0.1, 0.9, 0.99, 0.98, 0.99],
+      tratamiento: ""
     },
     {
       id: 9,
       name: "Temblor esencial",
-      val: [0, 0.99, 0.98, 0, 0, 0.9, 0.5, 0.1, 0, 0.7, 0.2, 0.6, 0.67, 0.89, 0]
+      val: [0, 0.99, 0.98, 0, 0, 0.9, 0.5, 0.1, 0, 0.7, 0.2, 0.6, 0.67, 0.89, 0],
+      tratamiento: ""
     },
     {
       id: 10,
       name: "Degeneración macular asociada a la edad",
-      val: [0, 0.99, 0, 0, 0, 0.75, 0.6, 0.6, 0, 0.1, 0.99, 0, 0.8, 0.88, 0]
+      val: [0, 0.99, 0, 0, 0, 0.75, 0.6, 0.6, 0, 0.1, 0.99, 0, 0.8, 0.88, 0],
+      tratamiento: ""
     },
     {
       id: 11,
       name: "Encefalopatía traumática crónica",
-      val: [0, 0, 0, 0, 0, 0.8, 0, 0.3, 0, 0.78, 0.45, 0.68, 0.82, 0.98, 0.98]
+      val: [0, 0, 0, 0, 0, 0.8, 0, 0.3, 0, 0.78, 0.45, 0.68, 0.82, 0.98, 0.98],
+      tratamiento: ""
     },
     {
       id: 12,
       name: "Síndrome de Marfan",
-      val: [0, 0, 0, 0, 0, 0.6, 0.86, 0.95, 0.5, 0.3, 0.99, 0, 0.4, 0.36, 0]
+      val: [0, 0, 0, 0, 0, 0.6, 0.86, 0.95, 0.5, 0.3, 0.99, 0, 0.4, 0.36, 0],
+      tratamiento: ""
     },
   ],
   sintomas: [
