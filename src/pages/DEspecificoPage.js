@@ -484,7 +484,7 @@ import React, {
               </div>
 
               <div className="field mt-5">
-                <button class="button is-large is-primary" onClick={handleButton}>Continuar</button>
+                <button className="button is-large is-primary" onClick={handleButton}>Continuar</button>
               </div>
             </div>{/*Column*/}
           </div>{/*Columns*/}

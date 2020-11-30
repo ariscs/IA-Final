@@ -1,8 +1,10 @@
 import React, {
   useState,
-  useEffect
+  useEffect,
+  useRef
 } from "react";
 import Slider from 'react-input-slider';
+import Modal1 from '../components/Modal1';
 
 import data from '../data/index';
 
@@ -31,11 +33,15 @@ const DGeneralPage = () => {
 
   const [datos, setDatos] = useState([]);
 
+  const [openModal, setOpenModal] = useState(false);
+  const [indexMax, setIndexMax] = useState(-1);
+  const [porMax, setPorMax] = useState(0);
+
   const handleButton = () => {
     setDatos([
-      sin1.x,
-      sin2.x,
-      sin3.x,
+      Number(sin1.x),
+      Number(sin2.x),
+      Number(sin3.x),
       Number(sin4.x),
       sin5.x,
       sin6.x,
@@ -51,27 +57,46 @@ const DGeneralPage = () => {
     ]);
   };
 
+  const isInitialMount = useRef(true);
+
   useEffect(() => {
-    console.log(datos);
-    let totalesE = []; //suma de los valores de cada enfermedad, el arreglo debe tener maximo 12 elementos.
-    let totalesM = []; //suma de los minimos de cada enfermedad comparada con los datos del usuario, el arreglo debe tener maximo 12 elementos.
-    data.enfermedades.forEach((e, i) => {
-      let total = 0;
-      let sumaMinimos = 0;
-      e.val.forEach((valor, ind) => {
-        total += valor;
-        if(valor>datos[ind]){
-          sumaMinimos+=datos[ind];
-        }else{
-          sumaMinimos+=valor;
-        }
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    }else{
+      console.log(datos);
+      let totalesE = []; //suma de los valores de cada enfermedad, el arreglo debe tener maximo 12 elementos.
+      let totalesM = []; //suma de los minimos de cada enfermedad comparada con los datos del usuario, el arreglo debe tener maximo 12 elementos.
+      data.enfermedades.forEach((e, i) => {
+        let total = 0;
+        let sumaMinimos = 0;
+        e.val.forEach((valor, ind) => {
+          total += valor;
+          if(valor>datos[ind]){
+            sumaMinimos+=datos[ind];
+          }else{
+            sumaMinimos+=valor;
+          }
+        });
+        totalesM.push(sumaMinimos);
+        totalesE.push(total);
       });
-      totalesM.push(sumaMinimos);
-      totalesE.push(total);
-    });
-    console.log(totalesM);
-    console.log(totalesE);
+      // setTotalesM(totalesM);
+      // setTotalesE(totalesE);
+      // showResults();
+      let p = [];
+      for(let i = 0; i < totalesM.length; i++){
+        p.push(Number(((totalesM[i]*100)/totalesE[i]).toFixed(2)));
+      }
+      console.log(p);
+      console.log(p.indexOf(Math.max(...p)));
+      setPorMax(Math.max(...p));
+      setIndexMax(p.indexOf(Math.max(...p)));
+    }
   }, [datos]);
+
+  const toogleModal = () => {
+    setOpenModal(!openModal);
+  };
 
   return (
     <>
@@ -439,11 +464,16 @@ const DGeneralPage = () => {
             </div>
 
             <div className="field mt-5">
-              <button class="button is-large is-primary" onClick={handleButton}>Continuar</button>
+              <button className="button is-large is-info" onClick={handleButton}>Guardar información</button>
+            </div>
+            <div className="field mt-5">
+              <button className="button is-large is-primary"onClick={toogleModal}>Diagnóstico</button>
             </div>
           </div>{/*Column*/}
         </div>{/*Columns*/}
       </div>{/*Container*/}
+
+      <Modal1 open={openModal} ind={indexMax} close={toogleModal} por={porMax}/>
     </>
   );
 }
