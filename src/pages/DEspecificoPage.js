@@ -121,7 +121,15 @@ import React, {
     },[datos]);
 
     const toogleModal = () => {
-      setOpenModal(!openModal);
+      if(enf.length <= 0){
+        alert("Por favor selecciona enfermedades.");
+      }else{
+        if(indexMax < 0){
+          alert("Es necesario guardar información antes de continuar.")
+        }else{
+          setOpenModal(!openModal);
+        }
+      }
     };
 
     const enfMap = data.enfermedades.map((item) => {

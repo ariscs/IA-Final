@@ -31,15 +31,18 @@ const Modal2 = ({open, ind, close, por, lista, listaPor}) => {
               <h1 className="subtitle is-2">{data.enfermedades[ind].name}</h1>{/* Enfermedad mas probable */}
             </div>
             {por < 75 &&
-              <div className="content has-text-centered is-small">
+              <div className="content is-small">
                 <p>**Los resultados por debajo del 75% no son determinantes para diagnosticar correctamente una enfermedad, sin embargo, te mostramos el resultado más alto de acuerdo a tus síntomas.</p>{/* Enfermedad mas probable */}
               </div>
             }
             <div className="content">
-              <p className="subtitle">Tratamiento:</p>{/* Indicaciones y tratamiento */}
+              <p className="title is-4">Tratamiento:</p>{/* Indicaciones y tratamiento */}
             </div>
             <div className="content">
-              <p className="subtitle">{data.enfermedades[ind].tratamiento}</p>{/* Indicaciones y tratamiento */}
+              <p className="subtitle is-6">{data.enfermedades[ind].tratamiento}</p>{/* Indicaciones y tratamiento */}
+            </div>
+            <div className="buttons">
+              <a href={data.enfermedades[ind].url} target="_blank" rel="noreferrer" className="button is-info is-light">Más información</a>
             </div>
             <div className="content">
               <p className="subtitle">Lista completa de resultados:</p>{/* Indicaciones y tratamiento */}

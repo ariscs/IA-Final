@@ -93,7 +93,11 @@ const DGeneralPage = () => {
   }, [datos]);
 
   const toogleModal = () => {
-    setOpenModal(!openModal);
+    if(indexMax < 0){
+      alert("Es necesario guardar información antes de continuar.");
+    } else {
+      setOpenModal(!openModal);
+    }
   };
 
   return (

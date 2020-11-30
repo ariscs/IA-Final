@@ -30,10 +30,13 @@ const Modal1 = ({open, ind, close, por}) => {
               </div>
             }
             <div className="content">
-              <p className="subtitle">Tratamiento:</p>{/* Indicaciones y tratamiento */}
+              <p className="title is-4">Tratamiento:</p>{/* Indicaciones y tratamiento */}
             </div>
             <div className="content">
-              <p className="subtitle">{data.enfermedades[ind].tratamiento}</p>{/* Indicaciones y tratamiento */}
+              <p className="subtitle is-6">{data.enfermedades[ind].tratamiento}</p>{/* Indicaciones y tratamiento */}
+            </div>
+            <div className="buttons">
+              <a href={data.enfermedades[ind].url} target="_blank" rel="noreferrer" className="button is-info is-light">Más información</a>
             </div>
             <div className="content is-small">
               <p>El equipo de DiagnosticApp te recuerda que este es un simple ejercicio que puede ayudarte a diagnosticar solamente <strong>enfermedades degenerativas</strong> a partir de una serie de síntomas, en caso de obtener un porcentaje alto de acuerdo con tus síntomas te recomendamos asistir con un especialista o profesional de la salud para realizar otras pruebas y así obtener un resultado más claro.</p>
